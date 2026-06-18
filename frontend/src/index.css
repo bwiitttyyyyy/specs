@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: theme("colors.canvas");
+  color: theme("colors.ink");
+}
+
+/* Readable rendered-spec typography (FR-007). */
+.prose-spec {
+  line-height: 1.7;
+}
+.prose-spec h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.6rem;
+}
+.prose-spec h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 1.4rem 0 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid theme("colors.line");
+}
+.prose-spec h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1rem 0 0.4rem;
+}
+.prose-spec p,
+.prose-spec li {
+  margin: 0.35rem 0;
+}
+.prose-spec ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+.prose-spec ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+.prose-spec code {
+  background: theme("colors.canvas");
+  border: 1px solid theme("colors.line");
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  font-size: 0.85em;
+}
+.prose-spec pre {
+  background: theme("colors.ink");
+  color: #e2e8f0;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.prose-spec pre code {
+  background: transparent;
+  border: none;
+  color: inherit;
+}
+.prose-spec table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+.prose-spec th,
+.prose-spec td {
+  border: 1px solid theme("colors.line");
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+.prose-spec th {
+  background: theme("colors.canvas");
+}

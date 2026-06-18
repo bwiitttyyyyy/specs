@@ -1,0 +1,12 @@
+node_modules/
+**/dist/
+**/build/
+coverage/
+playwright-report/
+test-results/
+# Speckit artifacts and tooling are managed by the speckit workflow, not Prettier.
+specs/
+.specify/
+.claude/
+package-lock.json
+CLAUDE.md

@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dashboard-local data (project registry / runtime state)
+*.local.json
+data/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# Test / coverage
+coverage/
+playwright-report/
+test-results/
+
+# Playwright MCP browser output
+.playwright-mcp/

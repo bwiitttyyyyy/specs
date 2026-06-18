@@ -1,0 +1,31 @@
+{
+  "name": "speckit-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Web dashboard for reading, managing, and iterating on speckit specs",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint backend/src frontend/src shared/src",
+    "format": "prettier --check \"**/*.{ts,tsx,json,md}\"",
+    "test": "npm run test --workspaces --if-present",
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.61.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.8.4",
+    "typescript-eslint": "^8.61.1"
+  }
+}

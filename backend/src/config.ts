@@ -24,6 +24,10 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     host: env.HOST ?? "127.0.0.1",
     authToken,
     dataDir: resolve(env.SPECKIT_DASHBOARD_DATA ?? "./data"),
-    adapterMode: env.SPECKIT_SESSION_ADAPTER === "claude" ? "claude" : "mock",
+    adapterMode: (() => {
+      if (env.SPECKIT_SESSION_ADAPTER === "mock") return "mock";
+      if (env.SPECKIT_SESSION_ADAPTER === "claude" || env.ANTHROPIC_API_KEY) return "claude";
+      return "mock";
+    })(),
   };
 }

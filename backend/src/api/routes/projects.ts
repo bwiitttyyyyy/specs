@@ -20,7 +20,7 @@ export function registerProjectRoutes(app: FastifyInstance, registry: ProjectReg
         {
           name: String(body.name ?? ""),
           specsPath: String(body.specsPath ?? ""),
-          sessionTarget: String(body.sessionTarget ?? ""),
+          sessionTarget: typeof body.sessionTarget === "string" ? body.sessionTarget : undefined,
         },
         new Date().toISOString(),
       );

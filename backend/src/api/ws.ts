@@ -64,7 +64,7 @@ export function registerWebSocket(app: FastifyInstance, deps: WsDeps): void {
       const watcher = new SpecWatcher(project.specsPath, specId);
 
       try {
-        const session = await deps.sessions.getConnected(project.id, project.sessionTarget);
+        const session = await deps.sessions.getConnected(project);
         unsubscribe = session.onStateChange((state) =>
           send({
             type: "status",
@@ -116,7 +116,7 @@ export function registerWebSocket(app: FastifyInstance, deps: WsDeps): void {
             break;
           case "reconnect":
             void deps.sessions
-              .getConnected(project.id, project.sessionTarget)
+              .getConnected(project)
               .then((s) => send({ type: "status", ...s.state }))
               .catch((e) =>
                 send({ type: "error", error: "session_unavailable", detail: (e as Error).message }),

@@ -21,7 +21,7 @@ export interface Project {
   lastActiveAt: string;
 }
 
-export type NewProject = Pick<Project, "name" | "specsPath" | "sessionTarget">;
+export type NewProject = Pick<Project, "name" | "specsPath"> & { sessionTarget?: string };
 
 // ---------------------------------------------------------------------------
 // Spec (Feature) — derived from disk

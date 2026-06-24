@@ -39,15 +39,11 @@ export class ProjectRegistry {
         "validation",
       );
     }
-    if (!input.sessionTarget?.trim()) {
-      throw new RegistryError("sessionTarget is required", "validation");
-    }
-
     const project: Project = {
       id: randomUUID(),
       name,
       specsPath,
-      sessionTarget: input.sessionTarget.trim(),
+      sessionTarget: input.sessionTarget?.trim() || randomUUID(),
       createdAt: now,
       lastActiveAt: now,
     };

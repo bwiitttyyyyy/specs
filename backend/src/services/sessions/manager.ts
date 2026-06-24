@@ -4,11 +4,13 @@ import { Session } from "./session.js";
 
 export type AdapterMode = "mock" | "claude";
 
-export type AdapterFactory = (sessionTarget: string) => SessionAdapter;
+export type AdapterFactory = (opts: { sessionTarget: string; specsPath: string }) => SessionAdapter;
 
 function defaultFactory(mode: AdapterMode): AdapterFactory {
-  return (sessionTarget: string) =>
-    mode === "claude" ? new ClaudeSessionAdapter(sessionTarget) : new MockSessionAdapter();
+  return ({ sessionTarget, specsPath }) =>
+    mode === "claude"
+      ? new ClaudeSessionAdapter(specsPath, sessionTarget)
+      : new MockSessionAdapter();
 }
 
 /**
@@ -25,11 +27,17 @@ export class SessionManager {
   }
 
   /** Get (creating + connecting if needed) the session for a project. */
-  async getConnected(projectId: string, sessionTarget: string): Promise<Session> {
-    let session = this.sessions.get(projectId);
+  async getConnected(project: {
+    id: string;
+    sessionTarget: string;
+    specsPath: string;
+  }): Promise<Session> {
+    let session = this.sessions.get(project.id);
     if (!session) {
-      session = new Session(this.factory(sessionTarget));
-      this.sessions.set(projectId, session);
+      session = new Session(
+        this.factory({ sessionTarget: project.sessionTarget, specsPath: project.specsPath }),
+      );
+      this.sessions.set(project.id, session);
     }
     await session.connect();
     return session;
